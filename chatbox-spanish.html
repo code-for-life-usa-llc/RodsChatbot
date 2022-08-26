@@ -1,0 +1,154 @@
+<html>
+    <head>
+        <title>robot 174</title>
+        <style>
+            /* Chat containers */
+            .container {
+              border: 2px solid #DEDEDE;
+              background-color: #F1F1F1;
+              border-radius: 5px;
+              padding: 10px;
+              margin: 10px 0;
+            }
+            /* Darker chat container */
+            .darker {
+              border-color: #ccc;
+              background-color: lightgrey;
+            }
+            /* Clear floats */
+            .container::after {
+              content: "";
+              clear: both;
+              display: table;
+            }
+            /* Style images */
+            .container img {
+              float: left;
+              max-width: 25px;
+              width: 10%;
+              margin-right: 20px;
+              border-radius: 50%;
+            }
+            /* Style the right image */
+            .container img.right {
+              float: right;
+              margin-left: 20px;
+              margin-right:0;
+            }
+            /* Style time text */
+            .time-right {
+              float: right;
+              color: #aaa;
+            }
+            /* Style time text */
+            .time-left {
+              float: left;
+              color: #999;
+            }
+          
+    a:hover{
+    
+    background-color: rgb(255, 0, 0);
+    
+    }
+    a{
+      background-color: black;
+      color:white;
+    }
+        </style>
+    </head>
+    <body>
+        <div align="center">
+            <h1>174</h1>
+          <a href="chatbox.html">english-ingles</a>
+        </div>
+        <div id="174thAV"></div>
+        <div>
+            <p id="typeNotifier" style="display: none;">174 esta escribiendo...</p>
+            <textarea id="userInput" rows="4" cols="190" placeholder="escribe,el robot 174 te respondera" ></textarea>
+        </div>
+        <script>
+            function random(items){
+                var item = items[Math.floor(Math.random() * items.length)];
+                return item;
+             }//it will randomly pick an item.
+            function grabTime(){
+                let d = new Date();
+                let type;
+                let hours = parseInt(d.getHours());
+                let minutes = d.getMinutes().toString();
+                if(hours > 12){
+                    hours = hours - 12;
+                    type = "PM";
+                }else{
+                    type = "AM";
+                }
+                if(minutes.length == 1){
+                    minutes = `0${minutes}`;
+                }
+                return `${hours}:${minutes} ${type}`;
+                //this will say the time that you send the message and the time of the chatbox respond
+            }
+            let responseTimes = [2000, 3000, 4000];
+            let input = document.getElementById("userInput");
+            let chatBox = document.getElementById("174thAV");
+            let typeNotifier = document.getElementById("typeNotifier");
+            input.addEventListener("keyup", function(event){
+               // New code block to implement with class
+                if(input.value.trim() == ""){
+                        return;
+                }//this is the time the chatbot will take to respond you and will notify you when he response you.
+               // New code ^^^
+                let message = input.value;
+                let newMessageBox = document.createElement('div');
+                newMessageBox.classList.add("container");
+                newMessageBox.innerHTML = `<img src="./person.jpg" alt="Avatar">
+                <p>${message}</p>
+                <span class="time-right">${grabTime()}</span>`;
+                if(event.keyCode == 13){//this the message box
+                    event.preventDefault();
+                    input.value = " ";
+                    chatBox.appendChild(newMessageBox);
+                    typeNotifier.style.display = "block";
+                    message = message.toString();
+                    message = message.replace(/(\r\n|\n|\r)/gm, "");
+                    message = message.toLowerCase();//this code is the displayers of the word you send and if is going to be uppercase or lowercase
+  
+                  if(message.includes("hola")){
+                     response="hola, como estas?";
+                  }else if(message.includes("hola,como estas")){
+                    response="bien y tu?";
+                  }
+                  else if(message.includes("bien y tu")){
+                     response="bien";
+                  }else if(message.includes("cual es tu nombre")){
+                     response="yo soy el robot 174";
+                  }else if(message.includes("cual es tu color favorito")){
+                     response="mi color color favarito es el gris";
+                  }else if(message.includes("quien es chris troy")){
+                     response="Gran tipo. Fundador y catalizador de Code For Life";
+                  }else if(message.includes("dionel")|| message.includes("instructor")){
+                     response="dionel y angella son buenos intructores en codigo por vida"
+                  }else if(message.includes("rod")){
+                     response="el es mi creador";
+                  }else if (message.includes("nueva york")){
+                    response="La ciudad de Nueva York es la ciudad más poblada de los Estados Unidos y el área metropolitana de Nueva York es una de las más pobladas del mundo. Buffalo es la segunda ciudad más grande del estado después de la ciudad de Nueva York, mientras que Mechanicville es la más pequeña (por área) de todas. [1] 4. La “Estatua de la Libertad” está en Nueva York.", "De su población de 19 millones, un poco más de 8 millones viven solo en la ciudad de Nueva York. De hecho, aproximadamente 1 de cada 38 personas en los EE. UU. vive en la ciudad de Nueva York, y más personas viven en la ciudad de Nueva York que en Australia y Suiza juntas. [21] [22] Si bien la ciudad de Nueva York es la ciudad más grande de Nueva York", "la ciudad de Nueva York es el hogar de la mayoría de los multimillonarios del mundo. Y, hay más de 380.000 millonarios en la Ciudad. Hablando de dinero, lo necesitará si planea vivir en la ciudad de Nueva York."
+                  }
+                  else{
+                        response = random(["Que?", "esperate", "no entiendo"]);
+                    }//this code is what the bot is going to respond to you
+                    setTimeout(function(){
+                     let newAIresponse = document.createElement('div');
+                     newAIresponse.classList.add("container");
+                     newAIresponse.classList.add("darker");
+                    newAIresponse.innerHTML = `<img src="./robot.jpg" alt="Avatar">
+                   <p>${response}</p>   
+                     <span class="time-right">${grabTime()}</span>`; // just an element of css
+                 chatBox.appendChild(newAIresponse);
+                     typeNotifier.style.display = "none";
+                  },random(responseTimes));//this piece of the code is responsible of picking the random the time of respond randomly
+                }
+            });
+        </script>
+    </body>
+</html>

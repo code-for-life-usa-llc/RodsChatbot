@@ -1,0 +1,197 @@
+<html>
+    <head>
+        <title>17th Robot</title>
+        <style>
+            /* Chat containers */
+            .container {
+              border: 2px solid #DEDEDE;
+              background-color: #F1F1F1;
+              border-radius: 5px;
+              padding: 10px;
+              margin: 10px 0;
+            }
+            /* Darker chat container */
+            .darker {
+              border-color: #ccc;
+              background-color: lightgrey;
+            }
+            /* Clear floats */
+            .container::after {
+              content: "";
+              clear: both;
+              display: table;
+            }
+            /* Style images */
+            .container img {
+              float: left;
+              max-width: 25px;
+              width: 10%;
+              margin-right: 20px;
+              border-radius: 50%;
+            }
+            /* Style the right image */
+            .container img.right {
+              float: right;
+              margin-left: 20px;
+              margin-right:0;
+            }
+            /* Style time text */
+            .time-right {
+              float: right;
+              color: #aaa;
+            }
+            /* Style time text */
+            .time-left {
+              float: left;
+              color: #999;
+            }
+            a:hover{
+    
+    background-color: rgb(255, 0, 0);
+    
+    }
+    a{
+      background-color: black;
+      color:white;
+    }
+        </style>
+    </head>
+    <body>
+        <div align="center">
+            <h1>174th</h1>
+            <a href="chatbox-spanish.html">spanish-español</a>
+        </div>
+        <div id="174thAV"></div>
+        <div>
+            <p id="typeNotifier" style="display: none;">174th is typing...</p>
+            <textarea id="userInput" rows="4" cols="190" placeholder="Type, 174th Robot will respond. Press Enter to send." ></textarea>
+        </div>
+        <script>
+            function random(items){
+                var item = items[Math.floor(Math.random() * items.length)];
+                return item;
+             }//it will randomly pick an item.
+            function grabTime(){
+                let d = new Date();
+                let type;
+                let hours = parseInt(d.getHours());
+                let minutes = d.getMinutes().toString();
+                if(hours > 12){
+                    hours = hours - 12;
+                    type = "PM";
+                }else{
+                    type = "AM";
+                }
+                if(minutes.length == 1){
+                    minutes = `0${minutes}`;
+                }
+                return `${hours}:${minutes} ${type}`;
+                //this will say the time that you send the message and the time of the chatbox respond
+            }
+            let responseTimes = [2000, 3000, 4000];
+            let input = document.getElementById("userInput");
+            let chatBox = document.getElementById("174thAV");
+            let typeNotifier = document.getElementById("typeNotifier");
+            input.addEventListener("keyup", function(event){
+               // New code block to implement with class
+                if(input.value.trim() == ""){
+                        return;
+                }//this is the time the chatbot will take to respond you and will notify you when he response you.
+               // New code ^^^
+                let message = input.value;
+                let newMessageBox = document.createElement('div');
+                newMessageBox.classList.add("container");
+                newMessageBox.innerHTML = `<img src="./person.jpg" alt="Avatar">
+                <p>${message}</p>
+                <span class="time-right">${grabTime()}</span>`;
+                if(event.keyCode == 13){//this the message box
+                    event.preventDefault();
+                    input.value = " ";
+                    chatBox.appendChild(newMessageBox);
+                    typeNotifier.style.display = "block";
+                    message = message.toString();
+                    message = message.replace(/(\r\n|\n|\r)/gm, "");
+                    message = message.toLowerCase();//this code is the displayers of the word you send and if is going to be uppercase or lowercase
+                    if(message.includes("hello") || message.includes("hi") || message.includes("hey") || message.includes("whats up") || message.includes("what's up?") || message.includes("wssp") || message.includes("wsp")){
+                       response = "Hello!";
+                    }else if(message.includes("your name")){
+                       response = "My name...? I'm 174th Robot.";
+                    }else if(message.includes("your favorite color")){
+                       response = "I like grey.";
+                    }else if(message.includes("how are you")){
+                       response = random(["I'm pretty good...", "You tell me... been thinking about moving into a different work situation.", "idk, I'm artificial intelligence"]);
+                    }else if(message.includes(" code for life")){
+                       response = "Code For Life is a tech collective working to introduce more youth to tech and its opportunities. Check it out at https://www.codeforlife.us.";
+                    }else if(message.includes("what time is it")){
+                       response = "If I'm running on a Mac OS, check the top right corner for the time. If I'm a Windows OS, check the bottom right. Here to help lol.";
+                    }else if(message.includes("thanks")){
+                       response = random(["Sure.", "You're welcome", "Don't mention it.", "That's why I'm here."]);
+                    }else if(message.includes("is quarantine over")){
+                       response = "According to city officials, we are currently in Phase 1 of the reopening process in NYC."
+                    }else if(message.includes("that makes sense")){
+                       response = random(["=)", "Sure does.", "Yep."]);
+                    }else if(message.includes("ttyl")){
+                       response = random(["Gone so fast?!", "Do you really have to go?", "Ok, I'll be here when you get back :(."]);
+                    }else if(message.includes("lol")){
+                       response = random(["What's funny? lol", "Not laughing... lol", "lol"]);
+                    }else if(message.includes("are you there")){
+                       response = "Honestly can't be anywhere else...", "Bro,I'm a computer ._.";
+                    }else if(message.includes("better than michael jordan")){
+                       response = "MJ has 6 rings and Lebron has 3. If Bron can win 2 championships with the Lakers, we may have an argument.";
+                    }else if(message.includes("miss basketball")){
+                       response = "So. Do. I. I did hear that the NBA is looking to continue the season in late July.";
+                    }else if(message.includes("eat")){
+                       response = "It might be better to ask someone who eats... still an AI...", "IDK, because I'm a Robotic system,I eat electricity";
+                    }else if(message.includes("your favorite basketball player")){
+                       response = "Me. LeBron James...";
+                    }else if(message.includes("mr. qa")){
+                       response = "Patrick Sanchez... Sorry Joandy.";
+                    }else if(message.includes("wendi")){
+                       response = "I know one thing word that comes to mind when I think about Wendi Flores...  KPOP!";
+                    }else if(message.includes("joandy")){
+                       response = "Joandy? He's a pretty cool kid... Great work ethic...";
+                    }else if(message.includes("ian")){
+                       response = random(["Ian is probably wearing his gaming headphones right now.", "Super intelligent kid"]);
+                    }else if(message.includes("chris troy")){
+                       response = "Great guy. Founder & Catalyst of Code For Life";
+                    }else if(message.includes("going outside")){
+                       response = "trying be a computer program for one hour... new levels of frustration";
+                    }else if(message.includes("word")){
+                       response = "I'm not lying.";
+                    }else if(message.includes("i hear you")){
+                       response = "Good to be heard";
+                    }else if(message.includes("say less") || message.includes("true")){
+                       response = "Nuff said...";
+                   }else if(message.includes("dionel") || message.includes("angella")){
+                        response = "Dionel, and angela are two Instructors in code for life";
+                    }else if (message.includes("2x2") || message.includes("2 times 2")){
+                       response = "oh, that's 4";
+                    }else if(message.includes("why is school important?")){
+                       response = "because,you need to learn";
+                    }else if(message.includes("bitch")){
+                     response= "that's what your mom is"
+                    }else if(message.includes("rod")){
+                     response="He's my creator";
+                    }else if(message.includes("new york")){
+                    response="New York City is the most populous city in the United States and the New York metropolitan area is one of the most populous in the world. Buffalo is the second-largest city in the state after the New York City while Mechanicville is the smallest (by area) of all. [1] 4. The “Statue of Liberty” is in New York.", "Of its population of 19 million, a little over 8 million live in New York City alone. In fact, about 1 in every 38 people in the U.S. lives in New York City, and more people live in New York City than in Australia and Switzerland combined. [21] [22] While New York City is the largest city in New York", "New York City is home to the most billionaires in the world. And, there are more than 380,000 millionaires in the City. Speaking of money, you’re going to need it if you plan on living in New York City.";
+                  }else if(message.includes("background color")){
+                       document.body.style.backgroundColor = random(["red","blue","orange","green","pink","purple","magenta"]);
+                    }
+                  else{
+                        response = random(["Wait, what?" , "uhh",]);
+                    }//this code is what the bot is going to respond to you
+                    setTimeout(function(){
+                     let newAIresponse = document.createElement('div');
+                     newAIresponse.classList.add("container");
+                     newAIresponse.classList.add("darker");
+                    newAIresponse.innerHTML = `<img src="./robot.jpg" alt="Avatar">
+                   <p>${response}</p>   
+                     <span class="time-right">${grabTime()}</span>`; // just an element of css
+                 chatBox.appendChild(newAIresponse);
+                     typeNotifier.style.display = "none";
+                  },random(responseTimes));//this piece of the code is responsible of picking the random the time of respond randomly
+                }
+            });
+        </script>
+    </body>
+</html>
